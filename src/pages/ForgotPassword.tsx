@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -17,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft } from 'lucide-react';
+import { initEmailJS, sendPasswordResetEmail } from '@/services/emailService';
 
 const forgotPasswordSchema = z.object({
   email: z.string().email({ message: 'Adresse email invalide' }),
@@ -26,6 +26,10 @@ const ForgotPassword = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   
+  useEffect(() => {
+    initEmailJS();
+  }, []);
+  
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -33,19 +37,30 @@ const ForgotPassword = () => {
     },
   });
 
-  const handleSubmit = (data: z.infer<typeof forgotPasswordSchema>) => {
+  const handleSubmit = async (data: z.infer<typeof forgotPasswordSchema>) => {
     console.log('Forgot password form submitted:', data);
     
-    // Simulation d'un envoi d'email réussi
-    toast({
-      title: "Email envoyé",
-      description: "Si cette adresse est associée à un compte, vous recevrez un lien pour réinitialiser votre mot de passe.",
-    });
-    
-    // Redirection vers la page de connexion
-    setTimeout(() => {
-      navigate('/login');
-    }, 3000);
+    try {
+      const result = await sendPasswordResetEmail({ email: data.email });
+      
+      toast({
+        title: result.success ? "Email envoyé" : "Erreur",
+        description: result.message,
+      });
+      
+      if (result.success) {
+        // Redirection vers la page de connexion après 3 secondes
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+      }
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
