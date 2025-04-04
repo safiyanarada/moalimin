@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, Book, Home, Video, GraduationCap, Info, MessageSquare, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -15,6 +15,7 @@ import {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation();
 
   return (
     <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
@@ -111,10 +112,20 @@ const Navbar = () => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link to="/about" className={navigationMenuTriggerStyle()}>À Propos</Link>
+                  <Link 
+                    to="/about" 
+                    className={`${navigationMenuTriggerStyle()} ${location.pathname === '/about' ? 'bg-accent/50' : ''}`}
+                  >
+                    À Propos
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link to="/contact" className={navigationMenuTriggerStyle()}>Contact</Link>
+                  <Link 
+                    to="/contact" 
+                    className={`${navigationMenuTriggerStyle()} ${location.pathname === '/contact' ? 'bg-accent/50' : ''}`}
+                  >
+                    Contact
+                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
