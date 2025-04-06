@@ -2,14 +2,15 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
-  Home, 
+  BarChart3, 
+  Users, 
   BookOpen, 
   Video, 
-  MessageSquare, 
-  BarChart3, 
+  FileText, 
+  Calendar, 
   Settings,
-  Book,
-  Calendar,
+  MessageSquare,
+  Bell,
   LogOut
 } from 'lucide-react';
 
@@ -34,19 +35,19 @@ const SidebarItem = ({ icon: Icon, label, href, active }: SidebarItemProps) => (
   </Link>
 );
 
-const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const TeacherLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   
   const menuItems = [
-    { icon: Home, label: 'Tableau de bord', href: '/dashboard' },
-    { icon: BookOpen, label: 'Mes cours', href: '/dashboard/courses' },
-    { icon: Book, label: 'Coran', href: '/dashboard/quran' },
-    { icon: Video, label: 'Sessions live', href: '/dashboard/live' },
-    { icon: MessageSquare, label: 'Discussions', href: '/dashboard/discussions' },
-    { icon: Calendar, label: 'Calendrier', href: '/dashboard/calendar' },
-    { icon: BarChart3, label: 'Progression', href: '/dashboard/progress' },
-    { icon: Settings, label: 'Paramètres', href: '/dashboard/settings' },
+    { icon: BarChart3, label: 'Tableau de bord', href: '/teacher-dashboard' },
+    { icon: Users, label: 'Mes élèves', href: '/teacher/students' },
+    { icon: BookOpen, label: 'Mes cours', href: '/teacher/courses' },
+    { icon: Video, label: 'Sessions live', href: '/teacher/live' },
+    { icon: FileText, label: 'Devoirs & Évaluations', href: '/teacher/assignments' },
+    { icon: Calendar, label: 'Emploi du temps', href: '/teacher/schedule' },
+    { icon: MessageSquare, label: 'Messages', href: '/teacher/messages' },
+    { icon: Settings, label: 'Paramètres', href: '/teacher/settings' },
   ];
 
   return (
@@ -71,7 +72,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
                 label={item.label}
                 href={item.href}
                 active={currentPath === item.href || 
-                       (item.href !== '/dashboard' && currentPath.startsWith(item.href))}
+                       (item.href !== '/teacher-dashboard' && currentPath.startsWith(item.href))}
               />
             ))}
           </div>
@@ -90,10 +91,32 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) 
       
       {/* Main content */}
       <div className="flex-1 overflow-auto">
-        {children}
+        <header className="h-16 bg-white border-b border-gray-100 px-6 flex items-center justify-between">
+          <h2 className="text-lg font-medium">Espace enseignant</h2>
+          
+          <div className="flex items-center space-x-4">
+            <button className="p-1.5 rounded-full hover:bg-gray-100">
+              <Bell className="h-5 w-5 text-gray-500" />
+            </button>
+            
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                <Users className="h-5 w-5 text-gray-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">Dr. Ahmed Benali</p>
+                <p className="text-xs text-gray-500">Professeur</p>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <main>
+          {children}
+        </main>
       </div>
     </div>
   );
 };
 
-export default DashboardLayout;
+export default TeacherLayout;
