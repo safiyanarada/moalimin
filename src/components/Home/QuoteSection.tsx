@@ -27,24 +27,34 @@ const quotes: Quote[] = [
 
 const QuoteSection = () => {
   const [currentQuote, setCurrentQuote] = useState<Quote>(quotes[0]);
+  const [fadeIn, setFadeIn] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      setCurrentQuote(quotes[randomIndex]);
+      setFadeIn(false);
+      
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        setCurrentQuote(quotes[randomIndex]);
+        setFadeIn(true);
+      }, 500);
     }, 10000); // Change quote every 10 seconds
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-r from-[#eaf6ff] via-white to-[#d7eaff] py-16 geometric-pattern">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="bg-white/90 glassmorphism backdrop-blur rounded-2xl p-10 shadow-lg border border-blue-100 animate-fade-in">
-          <p className="text-4xl arabic font-amiri mb-4 leading-relaxed text-islamic-dark drop-shadow">
+    <section className="relative py-16 arabesque-pattern">
+      <div className="absolute inset-0 bg-gradient-to-r from-islamic-light/90 via-white/95 to-islamic-light/90"></div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div 
+          className={`bg-white/80 glassmorphism backdrop-blur rounded-2xl p-10 shadow-xl border border-islamic-primary/10 transition-all duration-500 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <p className="text-4xl arabic font-amiri mb-4 leading-relaxed text-islamic-dark drop-shadow-sm">
             {currentQuote.text}
           </p>
-          <p className="text-[#33C3F0] font-semibold">
+          <div className="w-24 h-1 bg-gradient-to-r from-islamic-primary to-islamic-accent mx-auto my-4 rounded-full"></div>
+          <p className="text-islamic-primary font-semibold">
             {currentQuote.source}
           </p>
         </div>
