@@ -1,7 +1,8 @@
 
 import React from "react";
 import DashboardLayout from "@/components/Dashboard/DashboardLayout";
-import { activity, BookOpen, BarChart3 } from "lucide-react";
+// Removed unused and incorrect import "activity"
+import { BookOpen, BarChart3 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const userProgress = [
@@ -55,3 +56,4 @@ const DashboardProgress = () => {
 };
 
 export default DashboardProgress;
+
