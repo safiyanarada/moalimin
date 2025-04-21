@@ -32,22 +32,21 @@ const faqItems = [
 
 const FaqSection = () => {
   return (
-    <section className="py-16 bg-islamic-light/50">
+    <section className="py-20 bg-gradient-to-r from-[#ecf7fe] via-white to-[#e8f6ff]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-islamic-dark islamic-border inline-block pb-2">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-bold text-islamic-dark islamic-border-blue inline-block pb-2">
             Questions fréquentes
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-gray-600">
             Trouvez des réponses aux questions les plus courantes sur notre plateforme.
           </p>
         </div>
-        
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div className="bg-white/80 backdrop-blur glassmorphism rounded-2xl shadow-lg border border-blue-100 p-8">
           <Accordion type="single" collapsible className="space-y-4">
             {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border border-gray-100 rounded-lg px-4">
-                <AccordionTrigger className="text-islamic-dark font-medium py-4">
+              <AccordionItem key={index} value={`item-${index}`} className="border border-blue-100 rounded-lg px-4 glassmorphism">
+                <AccordionTrigger className="text-islamic-dark font-medium py-4 text-lg">
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 pb-4 pt-1">
@@ -57,10 +56,9 @@ const FaqSection = () => {
             ))}
           </Accordion>
         </div>
-        
         <div className="text-center mt-8">
           <p className="text-gray-600">
-            Vous avez d'autres questions ? <a href="/contact" className="text-islamic-primary hover:underline">Contactez-nous</a>
+            Vous avez d'autres questions ? <a href="/contact" className="text-[#33C3F0] hover:underline font-semibold">Contactez-nous</a>
           </p>
         </div>
       </div>

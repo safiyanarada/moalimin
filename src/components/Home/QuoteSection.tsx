@@ -38,13 +38,13 @@ const QuoteSection = () => {
   }, []);
 
   return (
-    <section className="relative bg-islamic-primary/5 py-16 geometric-pattern">
+    <section className="relative bg-gradient-to-r from-[#eaf6ff] via-white to-[#d7eaff] py-16 geometric-pattern">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-sm border border-islamic-primary/10">
-          <p className="text-3xl arabic font-amiri mb-4 leading-relaxed text-islamic-dark">
+        <div className="bg-white/90 glassmorphism backdrop-blur rounded-2xl p-10 shadow-lg border border-blue-100 animate-fade-in">
+          <p className="text-4xl arabic font-amiri mb-4 leading-relaxed text-islamic-dark drop-shadow">
             {currentQuote.text}
           </p>
-          <p className="text-islamic-primary font-semibold">
+          <p className="text-[#33C3F0] font-semibold">
             {currentQuote.source}
           </p>
         </div>

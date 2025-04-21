@@ -8,12 +8,12 @@ type TestimonialProps = {
 };
 
 const Testimonial = ({ quote, name, role }: TestimonialProps) => (
-  <div className="flex flex-col bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+  <div className="flex flex-col bg-white/70 rounded-2xl shadow-lg p-7 border border-blue-100 glassmorphism animate-fade-in">
     <div className="flex-1">
       <p className="text-gray-600 italic">"{quote}"</p>
     </div>
     <div className="mt-4">
-      <p className="text-islamic-primary font-semibold">{name}</p>
+      <p className="text-[#1EAEDB] font-semibold">{name}</p>
       <p className="text-gray-500 text-sm">{role}</p>
     </div>
   </div>
@@ -39,18 +39,17 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <div className="py-16 bg-islamic-light">
+    <div className="py-20 bg-gradient-to-r from-[#ecf7fe] via-white to-[#e8f6ff]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-islamic-dark islamic-border inline-block pb-2">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-bold text-islamic-dark islamic-border-blue inline-block pb-2">
             Témoignages
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-gray-500">
             Découvrez comment Moalimin transforme l'apprentissage islamique pour nos utilisateurs.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
           {testimonials.map((testimonial, index) => (
             <Testimonial 
               key={index} 
