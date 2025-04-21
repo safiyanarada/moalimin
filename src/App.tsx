@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,9 @@ import Dashboard from "./pages/Dashboard";
 import DashboardCourses from "./pages/dashboard/DashboardCourses";
 import DashboardQuran from "./pages/dashboard/DashboardQuran";
 import DashboardCalendar from "./pages/dashboard/DashboardCalendar";
+import DashboardLive from "./pages/dashboard/DashboardLive";
+import DashboardDiscussions from "./pages/dashboard/DashboardDiscussions";
+import DashboardProgress from "./pages/dashboard/DashboardProgress";
 import DashboardSettings from "./pages/dashboard/DashboardSettings";
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
@@ -35,6 +37,9 @@ const App = () => (
           <Route path="/dashboard/courses" element={<DashboardCourses />} />
           <Route path="/dashboard/quran" element={<DashboardQuran />} />
           <Route path="/dashboard/calendar" element={<DashboardCalendar />} />
+          <Route path="/dashboard/live" element={<DashboardLive />} />
+          <Route path="/dashboard/discussions" element={<DashboardDiscussions />} />
+          <Route path="/dashboard/progress" element={<DashboardProgress />} />
           <Route path="/dashboard/settings" element={<DashboardSettings />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/register" element={<Register />} />
@@ -45,7 +50,6 @@ const App = () => (
           <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
           <Route path="/teacher/courses" element={<TeacherCourses />} />
           <Route path="/teacher/students" element={<TeacherStudents />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
